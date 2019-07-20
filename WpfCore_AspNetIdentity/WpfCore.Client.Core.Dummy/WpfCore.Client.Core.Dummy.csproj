@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <LinkedOpenRiaServerProject>..\WpfCore.Web\WpfCore.Web.csproj</LinkedOpenRiaServerProject>
+    <OpenRiaGenerateApplicationContext>true</OpenRiaGenerateApplicationContext>
+    <RootNamespace>WpfCore.Client</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="OpenRiaServices.Client" Version="4.6.1" />
+    <PackageReference Include="OpenRiaServices.Client.CodeGen" Version="4.6.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="OpenRiaServices.Client.Core" Version="4.6.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.ServiceModel" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Generated_Code\" />
+  </ItemGroup>
+
+</Project>
