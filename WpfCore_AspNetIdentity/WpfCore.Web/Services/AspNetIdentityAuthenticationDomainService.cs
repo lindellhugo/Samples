@@ -9,12 +9,12 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using OpenRiaServices.DomainServices.Hosting;
 using OpenRiaServices.DomainServices.Server;
-using OpenRiaServices.DomainServices.Server.ApplicationServices;
+using OpenRiaServices.DomainServices.Server.Authentication;
 using WpfCore.Web;
 
 namespace SimpleApplication.Web
 {
-    public class User : OpenRiaServices.DomainServices.Server.ApplicationServices.IUser
+    public class User : OpenRiaServices.DomainServices.Server.Authentication.IUser
     {
         [Key]
         public string Name { get; set; }
@@ -63,6 +63,10 @@ namespace SimpleApplication.Web
             {
                 case Microsoft.AspNet.Identity.Owin.SignInStatus.Success:
                     return GetAuthenticatedUser(userName);
+                case SignInStatus.RequiresVerification:
+                    // customdata can be used to pass 2fa token
+                    throw new NotImplementedException();
+                 // 
                 default:
                     return null;
             }

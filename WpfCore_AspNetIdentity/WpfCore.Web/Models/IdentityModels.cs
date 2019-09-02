@@ -6,7 +6,6 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using OpenRiaServices.DomainServices.Server.ApplicationServices;
 
 namespace WpfCore.Web.Models
 {

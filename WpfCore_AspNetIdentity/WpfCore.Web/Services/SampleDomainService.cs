@@ -25,12 +25,12 @@ namespace SimpleApplication.Web
 
         private Task Delay(int milliseconds)
         {
-            return Task.Factory.StartNew(() => Thread.Sleep(milliseconds));
+            return Task.Delay(milliseconds);
         }
 
         private Task Delay(TimeSpan delay)
         {
-            return Task.Factory.StartNew(() => Thread.Sleep(delay));
+            return Task.Delay(delay);
         }
 
         [Query(HasSideEffects=true)]
