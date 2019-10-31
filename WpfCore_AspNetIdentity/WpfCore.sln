@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfCore.Web", "WpfCore.Web\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfCore.Client.Core", "WpfCore.Client.Core\WpfCore.Client.Core.csproj", "{1CA0FB23-50B0-4134-966A-21A97FF643ED}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfCore.Client.Core.Dummy", "WpfCore.Client.Core.Dummy\WpfCore.Client.Core.Dummy.csproj", "{EC031534-F47F-4306-BE59-E44728550762}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,10 +27,6 @@ Global
 		{1CA0FB23-50B0-4134-966A-21A97FF643ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1CA0FB23-50B0-4134-966A-21A97FF643ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1CA0FB23-50B0-4134-966A-21A97FF643ED}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EC031534-F47F-4306-BE59-E44728550762}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EC031534-F47F-4306-BE59-E44728550762}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EC031534-F47F-4306-BE59-E44728550762}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EC031534-F47F-4306-BE59-E44728550762}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
