@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.ServiceModel;
 using System.Threading;
 using System.Threading.Tasks;
 using OpenRiaServices.DomainServices.Hosting;
 using OpenRiaServices.DomainServices.Server;
 using SimpleApplication.Web.Model;
 
-namespace SimpleApplication.Web
+namespace SimpleApplication.Web.SampleDomainService
 {
     [EnableClientAccess]
     public class SampleDomainService : DomainService
@@ -25,15 +27,15 @@ namespace SimpleApplication.Web
 
         private Task Delay(int milliseconds)
         {
-            return Task.Factory.StartNew(() => Thread.Sleep(milliseconds));
+            return Task.Delay(milliseconds, ServiceContext.CancellationToken);
         }
 
         private Task Delay(TimeSpan delay)
         {
-            return Task.Factory.StartNew(() => Thread.Sleep(delay));
+            return Task.Delay(delay, ServiceContext.CancellationToken);
         }
 
-        [Query(HasSideEffects=true)]
+        [Query(HasSideEffects = true)]
         public IQueryable<RangeItem> GetRange()
         {
             return _items.AsQueryable();
@@ -41,7 +43,7 @@ namespace SimpleApplication.Web
 
         public void UpdateRange(RangeItem range)
         {
-            
+
         }
 
         /// Query returing a queryable range in a task
@@ -116,7 +118,7 @@ namespace SimpleApplication.Web
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <returns></returns>
-        [Query(HasSideEffects=true, IsComposable=false)]
+        [Query(HasSideEffects = true, IsComposable = false)]
         public Task<RangeItem> GetRangeByIdTaskAsync(int id)
         {
             return Delay(1)
@@ -130,7 +132,7 @@ namespace SimpleApplication.Web
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <returns></returns>
-        [Query(HasSideEffects=true, IsComposable=false)]
+        [Query(HasSideEffects = true, IsComposable = false)]
         public Task<RangeItem> GetRangeByIdWithExceptionFirst(int id)
         {
             throw new DomainException("GetRangeByIdWithExceptionTask", 23);
@@ -195,10 +197,11 @@ namespace SimpleApplication.Web
         /// <remarks>
         /// Tests invoke returning Task{value type}
         /// </remarks>
-        public Task<int> AddOneAsync(int number)
+        [Invoke(HasSideEffects = false)]
+        public async Task<int> AddOneAsync(int number)
         {
-            return Delay(1)
-                .ContinueWith(t => number + 1);
+            await Task.Delay(1, ServiceContext.CancellationToken);
+            return number + 1;
         }
 
         /// <summary>
