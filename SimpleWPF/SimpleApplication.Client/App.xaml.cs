@@ -4,9 +4,9 @@ using System.Configuration;
 using System.Linq;
 using System.Net.Http;
 using System.Windows;
-using OpenRiaServices.DomainServices.Client;
-using OpenRiaServices.DomainServices.Client.ApplicationServices;
-using OpenRiaServices.DomainServices.Client.Web;
+using OpenRiaServices.Client;
+using OpenRiaServices.Client.Authentication;
+using OpenRiaServices.Client.Web;
 using SimpleApplication.Web;
 
 namespace SimpleApplication.Client

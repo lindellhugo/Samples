@@ -5,11 +5,10 @@ using System.Linq;
 using System.ServiceModel;
 using System.Threading;
 using System.Threading.Tasks;
-using OpenRiaServices.DomainServices.Hosting;
-using OpenRiaServices.DomainServices.Server;
+using OpenRiaServices.Server;
 using SimpleApplication.Web.Model;
 
-namespace SimpleApplication.Web.SampleDomainService
+namespace SimpleApplication.Web
 {
     [EnableClientAccess]
     public class SampleDomainService : DomainService
