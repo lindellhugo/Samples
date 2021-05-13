@@ -28,8 +28,7 @@ namespace SimpleApplication.Client
             {
                 // Uncomment this to debug in fiddler
                 // ServerBaseUri = new Uri("http://localhost.fiddler:51359/ClientBin/", UriKind.Absolute)
-                //ServerBaseUri = new Uri("https://localhost:44373/", UriKind.Absolute)
-                ServerBaseUri = new Uri("http://localhost:51359/", UriKind.Absolute)
+                ServerBaseUri = new Uri("https://localhost:44373/", UriKind.Absolute)
             };
 
             // Setup communication to use portable "/soap" endpoint
