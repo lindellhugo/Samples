@@ -17,3 +17,10 @@ https://blogs.msdn.microsoft.com/kylemc/tag/wcf-ria-services/page/3/
 other old blogs with resources
 * https://blogs.msdn.microsoft.com/brada/tag/riaservices/
 
+# Publish
+for publishing blazor webassembly, Copy wwwroot folder to root of RIA host webapp. this is the same as SelfHosting method of blazor. then change web.config 
+and add UrlReWriting section and httpCompression from web-blazor-publish.config file.
+
+# Authentication
+blazro webassembly does not support working with cookies directly. if you want to use internal authentication system, you must use Microsoft Indentity.
+if you want to use FormsAuthentication, cookies is not working and you must use Tokens.
