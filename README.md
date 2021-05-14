@@ -18,7 +18,7 @@ other old blogs with resources
 * https://blogs.msdn.microsoft.com/brada/tag/riaservices/
 
 # Run Sample
-* Run web application without debug, if port number is 51359, No change required, if not port on number of web application on program.cs file of webassembly (Domain client factory configuration section).
+* Run web application without debug, if port number is 51359, No change required, if not, Set port number of web application on program.cs file of webassembly (Domain client factory configuration section).
 * then set web assembly as startup project and run it, if it run on port number 41359, No change required. if not, you can set its port on value of "Cors" setting on web.config file.
 notice that these two application is not on same domain (on develop,not publish),as result cors (Cross origin resource share) must be enabled on web app. It is enabled for value of "Cors" setting on web.config. after publishing, webAssembly is in a subfolder of web app, as result both of projects are in same domain and you do not need to enable cors
 
