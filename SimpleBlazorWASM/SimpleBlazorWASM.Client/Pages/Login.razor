@@ -24,44 +24,44 @@
 
 </EditForm>
 
-    <span>@LoginedUserName</span>
+<span>@LoginedUserName</span>
 
 
-    @code {
+@code {
 
-        public LoginInfo loginInfo { get; set; }
+    public LoginInfo loginInfo { get; set; }
 
-        protected override void OnInitialized()
-        {
-            loginInfo = new Login.LoginInfo();
-            base.OnInitialized();
-        }
-
-        public string LoginedUserName { get; set; }
-
-        private void SignIn()
-        {
-            var loginParameters = new LoginParameters(loginInfo.UserName, loginInfo.Password);
-
-            WebContext.Current.Authentication.Login(loginParameters,
-                (res) =>
-                {
-                    if (res.LoginSuccess)
-                        LoginedUserName = res.User.Identity.Name + " signed in successfully";
-                    else if (!res.HasError)
-                        LoginedUserName = "Login failed (Wrong username password?)";
-                    else
-                        LoginedUserName = string.Format("Login error: {0}", res.Error);
-                    StateHasChanged();
-                }, null);
-        }
-
-        public class LoginInfo
-        {
-
-            public string UserName { get; set; }
-
-            public string Password { get; set; }
-
-        }
+    protected override void OnInitialized()
+    {
+        loginInfo = new Login.LoginInfo();
+        base.OnInitialized();
     }
+
+    public string LoginedUserName { get; set; }
+
+    private void SignIn()
+    {
+        var loginParameters = new LoginParameters(loginInfo.UserName, loginInfo.Password);
+
+        WebContext.Current.Authentication.Login(loginParameters,
+            (res) =>
+            {
+                if (res.LoginSuccess)
+                    LoginedUserName = res.User.Identity.Name + " signed in successfully";
+                else if (!res.HasError)
+                    LoginedUserName = "Login failed (Wrong username password?)";
+                else
+                    LoginedUserName = string.Format("Login error: {0}", res.Error);
+                StateHasChanged();
+            }, null);
+    }
+
+    public class LoginInfo
+    {
+
+        public string UserName { get; set; }
+
+        public string Password { get; set; }
+
+    }
+}

@@ -2,27 +2,28 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using OpenRiaServices.Client;
-using OpenRiaServices.Client.Authentication;
-using SimpleApplication.Web;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using OpenRiaServices.Client;
+using OpenRiaServices.Client.Authentication;
+using SimpleBlazorWASM.Web.Services;
 
-namespace SimpleApplication.Client.WebAssembly
+namespace SimpleBlazorWASM.Client
 {
     public class Program
     {
-        public static async Task Main(string[] args)
+        public static Task Main(string[] args)
         {
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("#app");
 
             DomainContext.DomainClientFactory = new OpenRiaServices.Client.PortableWeb.WebApiDomainClientFactory()
             {
-                ServerBaseUri = new Uri("http://localhost:51359/ClientBin/", UriKind.Absolute)
+                
+                ServerBaseUri = new Uri("https://localhost:44395/", UriKind.Absolute)
             };
 
             WebContext webContext = new WebContext
@@ -33,10 +34,9 @@ namespace SimpleApplication.Client.WebAssembly
                 }
             };
 
-            builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
-            //builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("http://localhost:51359/ClientBin/") });
+            builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://localhost:44395/") });
 
-            await builder.Build().RunAsync();
+            return builder.Build().RunAsync();
         }
     }
 }

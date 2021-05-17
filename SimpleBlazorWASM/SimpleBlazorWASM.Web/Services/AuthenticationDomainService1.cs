@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Web;
 using OpenRiaServices.Server;
 using OpenRiaServices.Server.Authentication.AspNetMembership;
 
-namespace SimpleApplication.Web
+namespace SimpleBlazorWASM.Web.Services
 {
     [EnableClientAccess]
     public class AuthenticationDomainService1 : AuthenticationBase<User>
@@ -20,7 +19,7 @@ namespace SimpleApplication.Web
 
         protected override void IssueAuthenticationToken(System.Security.Principal.IPrincipal principal, bool isPersistent)
         {
-            
+
             base.IssueAuthenticationToken(principal, isPersistent);
         }
 

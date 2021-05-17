@@ -1,11 +1,13 @@
 ﻿@page "/fetchdata"
+@using SimpleBlazorWASM.Web.Model
+@using SimpleBlazorWASM.Web.Services
 @inject HttpClient Http
 
-<h1>Weather forecast</h1>
+<h1>Range Item</h1>
 
 <p>This component demonstrates fetching data from the server.</p>
 
-@if (Items == null)
+@if (_items == null)
 {
     <p><em>Loading...</em></p>
 }
@@ -13,55 +15,46 @@ else
 {
     <table class="table">
         <thead>
-            <tr>
-                <th>Id</th>
-                <th>Text</th>
-                <th>Validation Error count</th>
-                <th>Summary</th>
-            </tr>
+        <tr>
+            <th>Id</th>
+            <th>Text</th>
+            <th>Validation Error count</th>
+            <th>Summary</th>
+        </tr>
         </thead>
         <tbody>
-            @foreach (var forecast in Items)
-            {
-                <tr>
-                    <td>@forecast.Id</td>
-                    <td>@forecast.Text</td>
-                    <td>@forecast.ValidationErrors.Count()</td>
-                    <td>@forecast.IsReadOnly</td>
-                </tr>
-            }
+        @foreach (var item in _items)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Text</td>
+                <td>@item.ValidationErrors.Count()</td>
+                <td>@item.IsReadOnly</td>
+            </tr>
+        }
         </tbody>
     </table>
 }
 
 @code {
-    private IEnumerable<RangeItem> Items;
+    private IEnumerable<RangeItem> _items;
 
-    protected override void OnInitialized()
+    protected override async void OnInitialized()
     {
-        var Context = new SimpleApplication.Web.SampleDomainContext();
-        Context.Load(Context.GetRangeQuery(), GetRangeQuery_Complete, false);
-    }
-
-    private void GetRangeQuery_Complete(LoadOperation<RangeItem> lo)
-    {
-        if (lo.HasError)
-            lo.MarkErrorAsHandled();
-        else
+        var context = new SampleDomainContext();
+        try
         {
-            Items = lo.Entities;
+
+            var lo = await context.LoadAsync(context.GetRangeQuery());
+            //var lo = await context.LoadAsync(context.GetRangeWithNotAuthorizedQuery());
+            _items = lo.Entities;
             StateHasChanged();
         }
-    }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
 
-    public class WeatherForecast
-    {
-        public DateTime Date { get; set; }
-
-        public int TemperatureC { get; set; }
-
-        public string Summary { get; set; }
-
-        public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
     }
 }

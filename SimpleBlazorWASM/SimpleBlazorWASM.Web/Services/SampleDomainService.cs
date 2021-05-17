@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.ServiceModel;
-using System.Threading;
 using System.Threading.Tasks;
 using OpenRiaServices.Server;
-using SimpleApplication.Web.Model;
 
-namespace SimpleApplication.Web
+using SimpleBlazorWASM.Web.Model;
+
+namespace SimpleBlazorWASM.Web.Services
 {
     [EnableClientAccess]
     public class SampleDomainService : DomainService

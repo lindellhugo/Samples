@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 
-namespace SimpleApplication.Web.Model
+namespace SimpleBlazorWASM.Web.Model
 {
     [DataContract(Namespace = "http://schemas.datacontract.org/2004/07/ServerSideAsyncDomainService")]
     public class RangeItem
