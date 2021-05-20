@@ -31,16 +31,6 @@ namespace OpenRiaServices.Client.PortableWeb
                 BaseAddress = new Uri(baseUri.AbsoluteUri + "/binary/", UriKind.Absolute),
             };
 
-#if Blazor
-            var CookieContainer = AppModel.Web.Services.AppModelContext.GetContainer();
-            if (CookieContainer != null)
-            {
-                var Cookie = CookieContainer.GetAllCookies()[0];
-                HttpClient.DefaultRequestHeaders.Add(".VPA.Sayeh", Cookie.Value);
-            }
-
-#endif
-
 
             lock (s_globalSerializerCache)
             {
