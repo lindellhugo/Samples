@@ -12,7 +12,6 @@ namespace SimpleBlazorWASM.Web
     {
         public void Configuration(IAppBuilder app)
         {
-            app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
             var myProvider = new ApiAuthorizationServerProvider();
             OAuthAuthorizationServerOptions options = new OAuthAuthorizationServerOptions
             {

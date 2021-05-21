@@ -19,18 +19,20 @@ namespace OpenRiaServices.Client.PortableWeb
     {
         private static readonly Dictionary<Type, Dictionary<Type, DataContractSerializer>> s_globalSerializerCache = new Dictionary<Type, Dictionary<Type, DataContractSerializer>>();
         private static readonly DataContractSerializer s_faultSerializer = new DataContractSerializer(typeof(RiaServiceBase.DomainServiceFault));
-        Dictionary<Type, DataContractSerializer> _serializerCache;
+        readonly Dictionary<Type, DataContractSerializer> _serializerCache;
 
-        public WebApiDomainClient(Type serviceInterface, Uri baseUri, HttpClient httpClient)
+        public WebApiDomainClient(Type serviceInterface, Uri baseUri, HttpClientHandler handler, string token)
         {
             ServiceInterfaceType = serviceInterface;
-            //HttpClient = new HttpClient(handler, disposeHandler: false)
-            //{
-            //    BaseAddress = new Uri(baseUri.AbsoluteUri + "/binary/", UriKind.Absolute),
-            //};
-            HttpClient = httpClient;
-            HttpClient.BaseAddress = new Uri(baseUri.AbsoluteUri + "/binary/", UriKind.Absolute);
-
+            HttpClient = new HttpClient(handler, false)
+            {
+                BaseAddress = new Uri(baseUri.AbsoluteUri + "/binary/", UriKind.Absolute),
+            };
+            if (!string.IsNullOrEmpty(token))
+            {
+                HttpClient.DefaultRequestHeaders.Authorization =
+                    new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+            }
 
             lock (s_globalSerializerCache)
             {
