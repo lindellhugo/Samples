@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleBlazorWASM.Web", "SimpleBlazorWASM.Web\SimpleBlazorWASM.Web.csproj", "{5BFEF6D2-B574-4561-928C-A2A4D178A4A8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleBlazorWASM.Client", "SimpleBlazorWASM.Client\SimpleBlazorWASM.Client.csproj", "{E46D0F82-B568-49C6-A492-FFDDAC4D6EA6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleBlazorWASM.Client", "SimpleBlazorWASM.Client\SimpleBlazorWASM.Client.csproj", "{E46D0F82-B568-49C6-A492-FFDDAC4D6EA6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

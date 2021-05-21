@@ -107,7 +107,7 @@ namespace SimpleBlazorWASM.Web.Services
         [RequiresAuthentication]
         public IQueryable<RangeItem> GetRangeWithNotAuthorized()
         {
-            return null;
+            return _items.AsQueryable();
         }
 
         /// <summary>

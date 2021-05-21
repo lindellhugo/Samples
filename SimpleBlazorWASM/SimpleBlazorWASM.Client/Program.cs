@@ -1,15 +1,10 @@
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
+using Blazored.LocalStorage;
 using OpenRiaServices.Client;
-using OpenRiaServices.Client.Authentication;
-using SimpleBlazorWASM.Web.Services;
 
 namespace SimpleBlazorWASM.Client
 {
@@ -20,22 +15,23 @@ namespace SimpleBlazorWASM.Client
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("#app");
 
-            DomainContext.DomainClientFactory = new OpenRiaServices.Client.PortableWeb.WebApiDomainClientFactory()
+            var host = builder.Configuration["Host"];
+
+
+            builder.Services.AddScoped(sp => new HttpClient
             {
-                
-                ServerBaseUri = new Uri("https://localhost:44395/", UriKind.Absolute)
-            };
+                BaseAddress = new Uri(host),
+                Timeout = new TimeSpan(0, 60, 0),
 
-            WebContext webContext = new WebContext
+            });
+            builder.Services.AddBlazoredLocalStorage();
+
+            var provider = builder.Services.BuildServiceProvider();
+
+            DomainContext.DomainClientFactory = new OpenRiaServices.Client.PortableWeb.WebApiDomainClientFactory(provider.GetService<HttpClient>(), provider.GetService<ISyncLocalStorageService>())
             {
-                Authentication = new FormsAuthentication()
-                {
-                    DomainContext = new AuthenticationDomainService1()
-                }
+                ServerBaseUri = new Uri(host, UriKind.Absolute)
             };
-
-            builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://localhost:44395/") });
-
             return builder.Build().RunAsync();
         }
     }

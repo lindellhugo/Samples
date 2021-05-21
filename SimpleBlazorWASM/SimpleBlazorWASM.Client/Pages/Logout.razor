@@ -1,0 +1,21 @@
+﻿@using SimpleBlazorWASM.Client.Model.Security
+@page "/Logout"
+@inherits LayoutComponentBase
+<h3>Logout</h3>
+
+@message
+
+@code {
+    [Inject]
+    protected Blazored.LocalStorage.ILocalStorageService LocalStorage { get; set; }
+
+    private string message { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LocalStorage.RemoveItemAsync(nameof(TokenResponse));
+        message = "Successfully logged out";
+
+    }
+
+}

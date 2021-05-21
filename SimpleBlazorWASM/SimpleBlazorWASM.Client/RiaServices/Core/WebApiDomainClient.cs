@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
@@ -13,7 +12,6 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using MyResources;
-using OpenRiaServices.Client;
 
 namespace OpenRiaServices.Client.PortableWeb
 {
@@ -23,23 +21,15 @@ namespace OpenRiaServices.Client.PortableWeb
         private static readonly DataContractSerializer s_faultSerializer = new DataContractSerializer(typeof(RiaServiceBase.DomainServiceFault));
         Dictionary<Type, DataContractSerializer> _serializerCache;
 
-        public WebApiDomainClient(Type serviceInterface, Uri baseUri, HttpMessageHandler handler)
+        public WebApiDomainClient(Type serviceInterface, Uri baseUri, HttpClient httpClient)
         {
             ServiceInterfaceType = serviceInterface;
-            HttpClient = new HttpClient(handler, disposeHandler: false)
-            {
-                BaseAddress = new Uri(baseUri.AbsoluteUri + "/binary/", UriKind.Absolute),
-            };
-
-#if Blazor
-            var CookieContainer = AppModel.Web.Services.AppModelContext.GetContainer();
-            if (CookieContainer != null)
-            {
-                var Cookie = CookieContainer.GetAllCookies()[0];
-                HttpClient.DefaultRequestHeaders.Add(".VPA.Sayeh", Cookie.Value);
-            }
-
-#endif
+            //HttpClient = new HttpClient(handler, disposeHandler: false)
+            //{
+            //    BaseAddress = new Uri(baseUri.AbsoluteUri + "/binary/", UriKind.Absolute),
+            //};
+            HttpClient = httpClient;
+            HttpClient.BaseAddress = new Uri(baseUri.AbsoluteUri + "/binary/", UriKind.Absolute);
 
 
             lock (s_globalSerializerCache)

@@ -45,8 +45,8 @@ else
         try
         {
 
-            var lo = await context.LoadAsync(context.GetRangeQuery());
-            //var lo = await context.LoadAsync(context.GetRangeWithNotAuthorizedQuery());
+            //var lo = await context.LoadAsync(context.GetRangeQuery());
+            var lo = await context.LoadAsync(context.GetRangeWithNotAuthorizedQuery());
             _items = lo.Entities;
             StateHasChanged();
         }
