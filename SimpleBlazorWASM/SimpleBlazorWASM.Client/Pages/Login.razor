@@ -1,0 +1,109 @@
+﻿@using OpenRiaServices.Client.Authentication
+@using Microsoft.Extensions.Configuration
+@using SimpleBlazorWASM.Client.Model.Security
+@using System.Text.Json
+@page "/Login"
+@inherits LayoutComponentBase
+
+
+
+<EditForm Model="@loginInfo">
+
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <div class="form-group row">
+        <label class="col-xl-1 col-lg-2 col-form-label">UserName</label>
+        <div class="col-2">
+            <InputText class="form-group" @bind-Value="loginInfo.UserName" />
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-xl-1 col-lg-2 col-form-label">Password</label>
+        <div class="col-2">
+            <InputText type="password" class="form-group" @bind-Value="loginInfo.Password" />
+        </div>
+    </div>
+
+    <button Type="submit" @onclick="SignIn">Login</button>
+
+</EditForm>
+
+<span>@LoginedUserName</span>
+
+
+@code {
+
+    [Inject]
+    protected HttpClient Http { get; set; }
+
+    [Inject] 
+    protected Blazored.LocalStorage.ILocalStorageService LocalStorage { get; set; }
+
+    public LoginInfo loginInfo { get; set; }
+
+    private string errorMessage;
+
+    protected override void OnInitialized()
+    {
+        loginInfo = new Login.LoginInfo();
+        base.OnInitialized();
+    }
+
+    public string LoginedUserName { get; set; }
+
+    private async Task SignIn()
+    {
+      
+        var postBody = new Dictionary<string, string>
+        {
+            {"Content-Type", "application/x-www-form-urlencoded"},
+            {"username", loginInfo.UserName},
+            {"password", loginInfo.Password},
+            {"grant_type", "password"}
+        };
+
+    // send request
+        using var response = await Http.PostAsync("token", new FormUrlEncodedContent(postBody));
+
+        if (!response.IsSuccessStatusCode)
+        {
+    // set error message for display, log to console and return
+            errorMessage = response.ReasonPhrase;
+            Console.WriteLine($"There was an error! {errorMessage}");
+            return;
+        }
+
+    // convert response data to JsonElement which can handle any JSON data
+        try
+        {
+            var data = await response.Content.ReadFromJsonAsync<JsonElement>();
+
+            // get token property from JSON response data
+            var token = data.GetProperty("access_token").GetString();
+            var expiresIn = data.GetProperty("expires_in").GetInt64();
+
+            var tokenResponse = new TokenResponse {AccessToken = token, ExpiresIn = expiresIn};
+
+            await LocalStorage.SetItemAsync(nameof(TokenResponse), tokenResponse);
+
+            LoginedUserName = "Login Successfull";
+        }
+        catch (Exception ex)
+        {
+            if (ex != null)
+            {
+
+            }
+        }
+    }
+
+    public class LoginInfo
+    {
+
+        public string UserName { get; set; }
+
+        public string Password { get; set; }
+
+    }
+}
