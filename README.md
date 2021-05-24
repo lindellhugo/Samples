@@ -16,4 +16,3 @@ https://blogs.msdn.microsoft.com/kylemc/tag/wcf-ria-services/page/3/
 
 other old blogs with resources
 * https://blogs.msdn.microsoft.com/brada/tag/riaservices/
-
