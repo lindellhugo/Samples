@@ -1,6 +1,7 @@
 ﻿@using SimpleBlazorWASM.Client.Model.Security
 @page "/Logout"
 @inherits LayoutComponentBase
+@inject AuthenticationManager  Auth
 <h3>Logout</h3>
 
 @message
@@ -13,9 +14,8 @@
 
     protected override async Task OnInitializedAsync()
     {
-        await LocalStorage.RemoveItemAsync(nameof(TokenResponse));
+        await Auth.LogoutAsync();
         message = "Successfully logged out";
-
     }
 
 }

@@ -34,10 +34,15 @@ else
         }
         </tbody>
     </table>
+    @if (!string.IsNullOrEmpty(errorMessage))
+    {
+        <p>@errorMessage</p>
+    }
 }
 
 @code {
     private IEnumerable<RangeItem> _items;
+    private string errorMessage;
 
     protected override async void OnInitialized()
     {
@@ -52,6 +57,7 @@ else
         }
         catch (Exception e)
         {
+            errorMessage = e.ToString();
             Console.WriteLine(e);
             throw;
         }

@@ -67,18 +67,6 @@
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="OpenRiaServices.Hosting.Wcf, Version=5.0.0.0, Culture=neutral, PublicKeyToken=2e0b7ccb1ae5b4c8, processorArchitecture=MSIL">
-      <HintPath>..\packages\OpenRiaServices.Hosting.Wcf.5.0.0\lib\net472\OpenRiaServices.Hosting.Wcf.dll</HintPath>
-    </Reference>
-    <Reference Include="OpenRiaServices.Hosting.Wcf.Endpoint, Version=5.0.0.0, Culture=neutral, PublicKeyToken=2e0b7ccb1ae5b4c8, processorArchitecture=MSIL">
-      <HintPath>..\packages\OpenRiaServices.Endpoints.5.0.0\lib\net472\OpenRiaServices.Hosting.Wcf.Endpoint.dll</HintPath>
-    </Reference>
-    <Reference Include="OpenRiaServices.Server, Version=5.0.0.0, Culture=neutral, PublicKeyToken=2e0b7ccb1ae5b4c8, processorArchitecture=MSIL">
-      <HintPath>..\packages\OpenRiaServices.Server.5.0.0\lib\net472\OpenRiaServices.Server.dll</HintPath>
-    </Reference>
-    <Reference Include="OpenRiaServices.Server.Authentication.AspNetMembership, Version=5.0.0.0, Culture=neutral, PublicKeyToken=2e0b7ccb1ae5b4c8, processorArchitecture=MSIL">
-      <HintPath>..\packages\OpenRiaServices.Server.Authentication.AspNetMembership.5.0.0\lib\net472\OpenRiaServices.Server.Authentication.AspNetMembership.dll</HintPath>
-    </Reference>
     <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
     </Reference>
@@ -94,9 +82,6 @@
       <HintPath>..\packages\System.Runtime.Serialization.Primitives.4.3.0\lib\net46\System.Runtime.Serialization.Primitives.dll</HintPath>
       <Private>True</Private>
       <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Cors, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.7\lib\net45\System.Web.Cors.dll</HintPath>

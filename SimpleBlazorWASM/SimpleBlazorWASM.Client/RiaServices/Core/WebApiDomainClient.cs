@@ -8,6 +8,7 @@ using System.Net.Http;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Dispatcher;
+using System.ServiceModel.Dispatcher.Copied;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -21,18 +22,13 @@ namespace OpenRiaServices.Client.PortableWeb
         private static readonly DataContractSerializer s_faultSerializer = new DataContractSerializer(typeof(RiaServiceBase.DomainServiceFault));
         readonly Dictionary<Type, DataContractSerializer> _serializerCache;
 
-        public WebApiDomainClient(Type serviceInterface, Uri baseUri, HttpClientHandler handler, string token)
+        public WebApiDomainClient(Type serviceInterface, Uri baseUri, HttpMessageHandler handler)
         {
             ServiceInterfaceType = serviceInterface;
             HttpClient = new HttpClient(handler, false)
             {
                 BaseAddress = new Uri(baseUri.AbsoluteUri + "/binary/", UriKind.Absolute),
             };
-            if (!string.IsNullOrEmpty(token))
-            {
-                HttpClient.DefaultRequestHeaders.Authorization =
-                    new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
-            }
 
             lock (s_globalSerializerCache)
             {
@@ -254,6 +250,7 @@ namespace OpenRiaServices.Client.PortableWeb
             // Parameters
             if (parameters != null && parameters.Count > 0)
             {
+                var converter = new QueryStringConverter();
                 foreach (var param in parameters)
                 {
                     if (param.Value != null)
@@ -262,7 +259,7 @@ namespace OpenRiaServices.Client.PortableWeb
                         uriBuilder.Append(Uri.EscapeDataString(param.Key));
                         uriBuilder.Append("=");
 
-                        var value = QueryStringConverter.ConvertValueToString(param.Value, param.Value.GetType());
+                        var value = converter.ConvertValueToString(param.Value, param.Value.GetType());
                         uriBuilder.Append(Uri.EscapeDataString(value));
                     }
                 }

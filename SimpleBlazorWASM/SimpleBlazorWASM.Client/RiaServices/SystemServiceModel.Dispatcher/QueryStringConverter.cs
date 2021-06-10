@@ -15,7 +15,6 @@ namespace System.ServiceModel.Dispatcher.Copied
     using System.Runtime.InteropServices;
     using System.Xml;
 
-    // Thread Safety: This class is thread safe
     class QueryStringConverter
     {
         HashSet<Type> defaultSupportedQueryStringTypes;
@@ -253,69 +252,72 @@ namespace System.ServiceModel.Dispatcher.Copied
         [SuppressMessage("Reliability", "Reliability104:CaughtAndHandledExceptionsRule", Justification = "The exception is traced in the finally clause")]
         TypeConverter GetStringConverter(Type parameterType)
         {
-            if (this.typeConverterCache.ContainsKey(parameterType))
+            lock (typeConverterCache)
             {
-                return (TypeConverter)this.typeConverterCache[parameterType];
-            }
-            TypeConverterAttribute[] typeConverterAttrs = parameterType.GetCustomAttributes(typeof(TypeConverterAttribute), true) as TypeConverterAttribute[];
-            if (typeConverterAttrs != null)
-            {
-                foreach (TypeConverterAttribute converterAttr in typeConverterAttrs)
+                if (this.typeConverterCache.ContainsKey(parameterType))
                 {
-                    Type converterType = Type.GetType(converterAttr.ConverterTypeName, false, true);
-                    if (converterType != null)
+                    return (TypeConverter)this.typeConverterCache[parameterType];
+                }
+                TypeConverterAttribute[] typeConverterAttrs = parameterType.GetCustomAttributes(typeof(TypeConverterAttribute), true) as TypeConverterAttribute[];
+                if (typeConverterAttrs != null)
+                {
+                    foreach (TypeConverterAttribute converterAttr in typeConverterAttrs)
                     {
-                        TypeConverter converter = null;
-                        Exception handledException = null;
-                        try
+                        Type converterType = Type.GetType(converterAttr.ConverterTypeName, false, true);
+                        if (converterType != null)
                         {
-                            converter = (TypeConverter)Activator.CreateInstance(converterType);
-                        }
-                        catch (TargetInvocationException e)
-                        {
-                            handledException = e;
-                        }
-                        catch (MemberAccessException e)
-                        {
-                            handledException = e;
-                        }
-                        catch (TypeLoadException e)
-                        {
-                            handledException = e;
-                        }
-                        catch (COMException e)
-                        {
-                            handledException = e;
-                        }
-                        catch (InvalidComObjectException e)
-                        {
-                            handledException = e;
-                        }
-                        finally
-                        {
-                            if (handledException != null)
+                            TypeConverter converter = null;
+                            Exception handledException = null;
+                            try
                             {
-                                //if (Fx.IsFatal(handledException))
-                                //{
-                                //    throw DiagnosticUtility.ExceptionUtility.ThrowHelperError(handledException);
-                                //}
-                                //DiagnosticUtility.TraceHandledException(handledException, TraceEventType.Warning);
+                                converter = (TypeConverter)Activator.CreateInstance(converterType);
                             }
-                        }
-                        if (converter == null)
-                        {
-                            continue;
-                        }
-                        if (converter.CanConvertTo(typeof(string)) && converter.CanConvertFrom(typeof(string)))
-                        {
-                            this.typeConverterCache.Add(parameterType, converter);
-                            return converter;
+                            catch (TargetInvocationException e)
+                            {
+                                handledException = e;
+                            }
+                            catch (MemberAccessException e)
+                            {
+                                handledException = e;
+                            }
+                            catch (TypeLoadException e)
+                            {
+                                handledException = e;
+                            }
+                            catch (COMException e)
+                            {
+                                handledException = e;
+                            }
+                            catch (InvalidComObjectException e)
+                            {
+                                handledException = e;
+                            }
+                            finally
+                            {
+                                if (handledException != null)
+                                {
+                                    //if (Fx.IsFatal(handledException))
+                                    //{
+                                    //    throw DiagnosticUtility.ExceptionUtility.ThrowHelperError(handledException);
+                                    //}
+                                    //DiagnosticUtility.TraceHandledException(handledException, TraceEventType.Warning);
+                                }
+                            }
+                            if (converter == null)
+                            {
+                                continue;
+                            }
+                            if (converter.CanConvertTo(typeof(string)) && converter.CanConvertFrom(typeof(string)))
+                            {
+                                this.typeConverterCache.Add(parameterType, converter);
+                                return converter;
+                            }
                         }
                     }
                 }
+                this.typeConverterCache.Add(parameterType, null);
+                return null;
             }
-            this.typeConverterCache.Add(parameterType, null);
-            return null;
         }
     }
 }

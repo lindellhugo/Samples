@@ -8,9 +8,10 @@ using OpenRiaServices.Client;
 
 namespace SimpleBlazorWASM.Client
 {
+
     public class Program
     {
-         public static Task Main(string[] args)
+        public static Task Main(string[] args)
         {
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("#app");
@@ -22,15 +23,25 @@ namespace SimpleBlazorWASM.Client
                 BaseAddress = new Uri(host),
             });
             builder.Services.AddBlazoredLocalStorage();
+            builder.Services.AddSingleton<AuthenticationManager>(prov =>
+                new AuthenticationManager(prov.GetRequiredService<ILocalStorageService>()));
+            builder.Services.AddSingleton<IAccessTokenProvider>(prov =>
+               prov.GetRequiredService<AuthenticationManager>());
 
             var provider = builder.Services.BuildServiceProvider();
 
-            DomainContext.DomainClientFactory = new OpenRiaServices.Client.PortableWeb.WebApiDomainClientFactory(provider.GetService<ISyncLocalStorageService>())
+            var tokenProver = provider.GetRequiredService<IAccessTokenProvider>();
+            DomainContext.DomainClientFactory = new OpenRiaServices.Client.PortableWeb.WebApiDomainClientFactory(
+                new TokenBasedAuthenticationHandler(
+                    new HttpClientHandler()
+                    {
+                    }, tokenProver)
+                )
             {
-
                 ServerBaseUri = new Uri(host, UriKind.Absolute)
             };
-           return builder.Build().RunAsync();
+
+            return builder.Build().RunAsync();
         }
     }
 }

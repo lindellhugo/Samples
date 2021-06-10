@@ -7,25 +7,17 @@ namespace OpenRiaServices.Client.PortableWeb
 {
     public class WebApiDomainClientFactory : DomainClientFactory
     {
-        public ISyncLocalStorageService LocalStorageService { get; }
-        public HttpClientHandler HttpClientHandler { get; }
+        HttpMessageHandler HttpMessageHandler { get; }
 
-        public WebApiDomainClientFactory(ISyncLocalStorageService localStorageService)
+        public WebApiDomainClientFactory(HttpMessageHandler httpMessageHandler)
         {
-            LocalStorageService = localStorageService;
-            HttpClientHandler = new HttpClientHandler();
-
+            HttpMessageHandler = httpMessageHandler;
         }
 
         protected override DomainClient CreateDomainClientCore(Type serviceContract, Uri serviceUri, bool requiresSecureEndpoint)
         {
-            var tokenResponse = LocalStorageService.GetItem<TokenResponse>(nameof(TokenResponse));
-            string token = null;
-            if (tokenResponse != null && !tokenResponse.IsExpired)
-            {
-                token = tokenResponse.AccessToken;
-            }
-            return new WebApiDomainClient(serviceContract, serviceUri, HttpClientHandler, token);
+           
+            return new WebApiDomainClient(serviceContract, serviceUri, HttpMessageHandler);
         }
 
         
