@@ -4,6 +4,7 @@
     <TargetFramework>net5.0</TargetFramework>
     <LinkedOpenRiaServerProject>..\SimpleBlazorWASM.Web\SimpleBlazorWASM.Web.csproj</LinkedOpenRiaServerProject>
     <OpenRiaGenerateApplicationContext>true</OpenRiaGenerateApplicationContext>
+    <RootNamespace>SimpleApplication.Client.WebAssembly</RootNamespace>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -21,6 +22,10 @@
     </PackageReference>
     <PackageReference Include="OpenRiaServices.Client.Core" Version="5.0.0" />
     <PackageReference Include="System.Net.Http.Json" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Generated_Code\" />
   </ItemGroup>
 
 </Project>
