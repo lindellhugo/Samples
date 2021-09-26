@@ -8,7 +8,6 @@ using OpenRiaServices.Client;
 
 namespace SimpleBlazorWASM.Client
 {
-
     public class Program
     {
         public static Task Main(string[] args)
@@ -22,21 +21,23 @@ namespace SimpleBlazorWASM.Client
             {
                 BaseAddress = new Uri(host),
             });
+
+
+            // For a production environment you probably want to use Microsoft.AspNetCore.Components.WebAssembly.Authentication
+            // for Access control
             builder.Services.AddBlazoredLocalStorage();
-            builder.Services.AddSingleton<AuthenticationManager>(prov =>
-                new AuthenticationManager(prov.GetRequiredService<ILocalStorageService>()));
-            builder.Services.AddSingleton<IAccessTokenProvider>(prov =>
-               prov.GetRequiredService<AuthenticationManager>());
+            builder.Services.AddSingleton<IAccessTokenProvider, AuthenticationManager>();
+            builder.Services.AddTransient<TokenBasedAuthenticationHandler>();
+
+            builder.Services.AddHttpClient("openria")
+                .AddHttpMessageHandler< TokenBasedAuthenticationHandler>();
 
             var provider = builder.Services.BuildServiceProvider();
 
-            var tokenProver = provider.GetRequiredService<IAccessTokenProvider>();
-            DomainContext.DomainClientFactory = new OpenRiaServices.Client.PortableWeb.WebApiDomainClientFactory(
-                new TokenBasedAuthenticationHandler(
-                    new HttpClientHandler()
-                    {
-                    }, tokenProver)
-                )
+            var httpClientFactory = provider.GetRequiredService<IHttpClientFactory>();
+
+            DomainContext.DomainClientFactory = new OpenRiaServices.Client.DomainClients.BinaryHttpDomainClientFactory(
+                () => httpClientFactory.CreateClient("openria"))
             {
                 ServerBaseUri = new Uri(host, UriKind.Absolute)
             };

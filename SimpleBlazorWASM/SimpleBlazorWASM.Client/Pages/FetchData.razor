@@ -7,6 +7,10 @@
 
 <p>This component demonstrates fetching data from the server.</p>
 
+@if (!string.IsNullOrEmpty(errorMessage))
+{
+    <p>@errorMessage</p>
+}
 @if (_items == null)
 {
     <p><em>Loading...</em></p>
@@ -15,29 +19,25 @@ else
 {
     <table class="table">
         <thead>
-        <tr>
-            <th>Id</th>
-            <th>Text</th>
-            <th>Validation Error count</th>
-            <th>Summary</th>
-        </tr>
+            <tr>
+                <th>Id</th>
+                <th>Text</th>
+                <th>Validation Error count</th>
+                <th>Summary</th>
+            </tr>
         </thead>
         <tbody>
-        @foreach (var item in _items)
-        {
-            <tr>
-                <td>@item.Id</td>
-                <td>@item.Text</td>
-                <td>@item.ValidationErrors.Count()</td>
-                <td>@item.IsReadOnly</td>
-            </tr>
-        }
+            @foreach (var item in _items)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Text</td>
+                    <td>@item.ValidationErrors.Count()</td>
+                    <td>@item.IsReadOnly</td>
+                </tr>
+            }
         </tbody>
     </table>
-    @if (!string.IsNullOrEmpty(errorMessage))
-    {
-        <p>@errorMessage</p>
-    }
 }
 
 @code {
@@ -46,21 +46,18 @@ else
 
     protected override async void OnInitialized()
     {
-        var context = new SampleDomainContext();
         try
         {
+            var context = new SampleDomainContext();
 
-            //var lo = await context.LoadAsync(context.GetRangeQuery());
             var lo = await context.LoadAsync(context.GetRangeWithNotAuthorizedQuery());
             _items = lo.Entities;
-            StateHasChanged();
         }
         catch (Exception e)
         {
             errorMessage = e.ToString();
             Console.WriteLine(e);
-            throw;
         }
-
+        StateHasChanged();
     }
 }
