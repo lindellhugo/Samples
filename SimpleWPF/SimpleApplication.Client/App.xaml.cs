@@ -23,8 +23,8 @@ namespace SimpleApplication.Client
 
         private void App_Startup(object sender, StartupEventArgs e)
         {
-            // Setup communication to use default "/binary" endpoint
-            DomainContext.DomainClientFactory = new WebDomainClientFactory()
+         // Setup communication to use default "/binary" endpoint
+         DomainContext.DomainClientFactory = new OpenRiaServices.Client.Web.SoapDomainClientFactory()
             {
                 // Uncomment this to debug in fiddler
                 // ServerBaseUri = new Uri("http://localhost.fiddler:51359/ClientBin/", UriKind.Absolute)
