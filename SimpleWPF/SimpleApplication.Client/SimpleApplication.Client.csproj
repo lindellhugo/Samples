@@ -7,9 +7,6 @@
     <LinkedOpenRiaServerProject>..\SimpleApplication.Web\SimpleApplication.Web.csproj</LinkedOpenRiaServerProject>
     <ExtrasEnableWpfProjectSetup>true</ExtrasEnableWpfProjectSetup>
   </PropertyGroup>
-	<ItemGroup>
-		<PackageReference Include="OpenRiaServices.Client.Core" Version="5.3.0" />
-	</ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SimpleApplication.Client.Core\SimpleApplication.Client.Core.csproj" />
   </ItemGroup>
