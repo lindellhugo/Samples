@@ -227,10 +227,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
-    <Compile Include="Services\AspNetIdentityAuthenticationDomainService.cs" />
-    <Compile Include="Services\Model\ComplexType2.cs" />
-    <Compile Include="Services\Model\RangeItem.cs" />
-    <Compile Include="Services\SampleDomainService.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -365,6 +361,12 @@
     <Content Include="Scripts\bootstrap.bundle.js.map" />
     <Content Include="Scripts\jquery-3.6.4.slim.min.map" />
     <Content Include="Scripts\jquery-3.6.4.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AspNetCore.Web.Shared\AspNetCore.Web.Shared.csproj">
+      <Project>{47629a8d-0f49-482b-8a48-852039d284a2}</Project>
+      <Name>AspNetCore.Web.Shared</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -5,9 +5,13 @@ VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCore.Client", "WpfCore.Client\AspNetCore.Client.csproj", "{59893939-9227-4E9D-90A8-8AA70A8B0BEF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfCore.Web", "WpfCore.Web\WpfCore.Web.csproj", "{DC3A6042-869C-4618-9461-6DAF9C521F41}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.Hosting.Wcf", "WpfCore.Web\AspNetCore.Hosting.Wcf.csproj", "{DC3A6042-869C-4618-9461-6DAF9C521F41}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCore.Client.CodeGen", "WpfCore.Client.Core\AspNetCore.Client.CodeGen.csproj", "{1CA0FB23-50B0-4134-966A-21A97FF643ED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.Hosting.AspNetCore", "AspNetCore.Hosting.AspNetCore\AspNetCore.Hosting.AspNetCore.csproj", "{DCE723A1-CFC9-4339-89DA-DD07CDF1B514}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.Web.Shared", "AspNetCore.Web.Shared\AspNetCore.Web.Shared.csproj", "{47629A8D-0F49-482B-8A48-852039D284A2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +31,14 @@ Global
 		{1CA0FB23-50B0-4134-966A-21A97FF643ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1CA0FB23-50B0-4134-966A-21A97FF643ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1CA0FB23-50B0-4134-966A-21A97FF643ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DCE723A1-CFC9-4339-89DA-DD07CDF1B514}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCE723A1-CFC9-4339-89DA-DD07CDF1B514}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCE723A1-CFC9-4339-89DA-DD07CDF1B514}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCE723A1-CFC9-4339-89DA-DD07CDF1B514}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47629A8D-0F49-482B-8A48-852039D284A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47629A8D-0F49-482B-8A48-852039D284A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47629A8D-0F49-482B-8A48-852039D284A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47629A8D-0F49-482B-8A48-852039D284A2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

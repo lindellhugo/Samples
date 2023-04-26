@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using SimpleApplication.Client;
 
 namespace WpfCore
 {
@@ -27,7 +28,7 @@ namespace WpfCore
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(new LoginPage());
+            this.Frame.Navigate(new MainPage());
         }
     }
 }
