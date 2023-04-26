@@ -3,7 +3,6 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <RootNamespace>WpfCore.Client</RootNamespace>
-	  <!-- THe  -->
     <LinkedOpenRiaServerProject>..\WpfCore.Web\AspNetCore.Hosting.Wcf.csproj</LinkedOpenRiaServerProject>
     <OpenRiaGenerateApplicationContext>true</OpenRiaGenerateApplicationContext>
   </PropertyGroup>
