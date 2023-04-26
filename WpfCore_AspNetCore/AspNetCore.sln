@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCore.Client", "WpfCore.Client\AspNetCore.Client.csproj", "{59893939-9227-4E9D-90A8-8AA70A8B0BEF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCore.Client", "AspNetCore.Client\AspNetCore.Client.csproj", "{59893939-9227-4E9D-90A8-8AA70A8B0BEF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.Hosting.Wcf", "WpfCore.Web\AspNetCore.Hosting.Wcf.csproj", "{DC3A6042-869C-4618-9461-6DAF9C521F41}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.Hosting.Wcf", "AspNetCore.Hosting\AspNetCore.Hosting.Wcf.csproj", "{DC3A6042-869C-4618-9461-6DAF9C521F41}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCore.Client.CodeGen", "WpfCore.Client.Core\AspNetCore.Client.CodeGen.csproj", "{1CA0FB23-50B0-4134-966A-21A97FF643ED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCore.Client.CodeGen", "AspNetCore.Client.CodeGen\AspNetCore.Client.CodeGen.csproj", "{1CA0FB23-50B0-4134-966A-21A97FF643ED}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.Hosting.AspNetCore", "AspNetCore.Hosting.AspNetCore\AspNetCore.Hosting.AspNetCore.csproj", "{DCE723A1-CFC9-4339-89DA-DD07CDF1B514}"
 EndProject
