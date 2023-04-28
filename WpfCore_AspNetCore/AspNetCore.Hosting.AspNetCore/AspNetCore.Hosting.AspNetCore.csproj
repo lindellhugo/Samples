@@ -7,10 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\OpenRiaServices\src\OpenRiaServices.Hosting.AspNetCore\Framework\OpenRiaServices.Hosting.AspNetCore.csproj" />
     <ProjectReference Include="..\AspNetCore.Web.Shared\AspNetCore.Web.Shared.csproj" />
   </ItemGroup>
-	<ItemGroup>
-		<PackageReference Include="OpenRiaServices.Hosting.AspNetCore" Version="0.2.1" />
-	</ItemGroup>
-
 </Project>

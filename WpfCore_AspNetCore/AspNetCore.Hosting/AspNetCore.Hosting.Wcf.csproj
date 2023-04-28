@@ -98,15 +98,6 @@
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="OpenRiaServices.Hosting.Wcf, Version=5.0.0.0, Culture=neutral, PublicKeyToken=2e0b7ccb1ae5b4c8, processorArchitecture=MSIL">
-      <HintPath>..\packages\OpenRiaServices.Hosting.Wcf.5.3.0\lib\net472\OpenRiaServices.Hosting.Wcf.dll</HintPath>
-    </Reference>
-    <Reference Include="OpenRiaServices.Hosting.Wcf.Endpoint, Version=5.0.0.0, Culture=neutral, PublicKeyToken=2e0b7ccb1ae5b4c8, processorArchitecture=MSIL">
-      <HintPath>..\packages\OpenRiaServices.Endpoints.5.3.0\lib\net472\OpenRiaServices.Hosting.Wcf.Endpoint.dll</HintPath>
-    </Reference>
-    <Reference Include="OpenRiaServices.Server, Version=5.0.0.0, Culture=neutral, PublicKeyToken=2e0b7ccb1ae5b4c8, processorArchitecture=MSIL">
-      <HintPath>..\packages\OpenRiaServices.Server.5.3.0\lib\net472\OpenRiaServices.Server.dll</HintPath>
-    </Reference>
     <Reference Include="Owin">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
     </Reference>
@@ -363,6 +354,18 @@
     <Content Include="Scripts\jquery-3.6.4.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\OpenRiaServices\src\OpenRiaServices.Hosting.Wcf.Endpoint\Framework\OpenRiaServices.Hosting.Wcf.Endpoint.csproj">
+      <Project>{063022b7-faf8-43fb-b605-30a5f29910c1}</Project>
+      <Name>OpenRiaServices.Hosting.Wcf.Endpoint</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\OpenRiaServices\src\OpenRiaServices.Hosting.Wcf\Framework\OpenRiaServices.Hosting.Wcf.csproj">
+      <Project>{e3844512-48a8-451a-9be4-ac7793016b9d}</Project>
+      <Name>OpenRiaServices.Hosting.Wcf</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\OpenRiaServices\src\OpenRiaServices.Server\Framework\OpenRiaServices.Server.csproj">
+      <Project>{72e74082-7928-4a70-83c1-49806b942fcb}</Project>
+      <Name>OpenRiaServices.Server</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AspNetCore.Web.Shared\AspNetCore.Web.Shared.csproj">
       <Project>{47629a8d-0f49-482b-8a48-852039d284a2}</Project>
       <Name>AspNetCore.Web.Shared</Name>

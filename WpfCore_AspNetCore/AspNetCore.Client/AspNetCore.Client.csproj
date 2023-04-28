@@ -11,10 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="OpenRiaServices.Client.Core" Version="5.3.0" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <ProjectReference Include="..\..\..\OpenRiaServices\src\OpenRiaServices.Client\Framework\OpenRiaServices.Client.csproj" />
     <ProjectReference Include="..\AspNetCore.Client.CodeGen\AspNetCore.Client.CodeGen.csproj" />
   </ItemGroup>
 

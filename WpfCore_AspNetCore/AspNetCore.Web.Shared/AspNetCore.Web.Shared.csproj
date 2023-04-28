@@ -3,8 +3,8 @@
   <PropertyGroup>
     <TargetFrameworks>net472;net6.0</TargetFrameworks>
   </PropertyGroup>
-	<ItemGroup>
-		<PackageReference Include="OpenRiaServices.Server" Version="5.3.0" />		
-	</ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\OpenRiaServices\src\OpenRiaServices.Server\Framework\OpenRiaServices.Server.csproj" />
+  </ItemGroup>
 </Project>
