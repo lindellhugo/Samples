@@ -11,8 +11,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\OpenRiaServices\src\OpenRiaServices.Client\Framework\OpenRiaServices.Client.csproj" />
     <ProjectReference Include="..\AspNetCore.Client.CodeGen\AspNetCore.Client.CodeGen.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="OpenRiaServices.Client">
+      <HintPath>..\..\..\OpenRiaServices\src\OpenRiaServices.Client\Framework\obj\Debug\net472\OpenRiaServices.Client.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>
