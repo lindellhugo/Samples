@@ -4,7 +4,7 @@
     <TargetFrameworks>net472;net6.0</TargetFrameworks>
   </PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="OpenRiaServices.Server" Version="5.3.0" />		
+		<PackageReference Include="OpenRiaServices.Server" Version="6.0.0-p1" />		
 	</ItemGroup>
 
 </Project>
