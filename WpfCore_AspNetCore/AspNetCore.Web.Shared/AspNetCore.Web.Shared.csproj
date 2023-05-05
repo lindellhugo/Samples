@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFrameworks>net472;net6.0</TargetFrameworks>
+	  <EnableDomainServiceValidation>False</EnableDomainServiceValidation>
   </PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="OpenRiaServices.Server" Version="6.0.0-p1" />		
