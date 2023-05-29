@@ -9,9 +9,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.Hosting.Wcf", "A
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCore.Client.CodeGen", "AspNetCore.Client.CodeGen\AspNetCore.Client.CodeGen.csproj", "{1CA0FB23-50B0-4134-966A-21A97FF643ED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.Hosting.AspNetCore", "AspNetCore.Hosting.AspNetCore\AspNetCore.Hosting.AspNetCore.csproj", "{DCE723A1-CFC9-4339-89DA-DD07CDF1B514}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCore.Hosting.AspNetCore", "AspNetCore.Hosting.AspNetCore\AspNetCore.Hosting.AspNetCore.csproj", "{DCE723A1-CFC9-4339-89DA-DD07CDF1B514}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.Web.Shared", "AspNetCore.Web.Shared\AspNetCore.Web.Shared.csproj", "{47629A8D-0F49-482B-8A48-852039D284A2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCore.Web.Shared", "AspNetCore.Web.Shared\AspNetCore.Web.Shared.csproj", "{47629A8D-0F49-482B-8A48-852039D284A2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "README", "README", "{CC94B5BD-3B1E-46CC-8809-936DBB259DA4}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
