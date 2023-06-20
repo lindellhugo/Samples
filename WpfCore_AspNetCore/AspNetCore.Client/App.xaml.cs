@@ -9,7 +9,6 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows;
-using AspNetCore.Client;
 
 namespace AspNetCore
 {
@@ -25,7 +24,7 @@ namespace AspNetCore
 
         private void App_Startup(object sender, StartupEventArgs e)
         {
-            DomainContext.DomainClientFactory = new OpenRiaServices.Client.DomainClients.BinaryHttpDomainClientFactory(new Uri("https://localhost:7046/", UriKind.Absolute), new System.Net.Http.HttpClientHandler());
+            DomainContext.DomainClientFactory = new OpenRiaServices.Client.DomainClients.BinaryHttpDomainClientFactory(new Uri("https://localhost:50694/", UriKind.Absolute), new System.Net.Http.HttpClientHandler());
         }
     }
 }
