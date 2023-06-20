@@ -7,14 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="MainPage.xaml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="OpenRiaServices.Client.Core" Version="5.3.1" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\AspNetCore.Client.CodeGen\AspNetCore.Client.CodeGen.csproj" />
   </ItemGroup>
 
