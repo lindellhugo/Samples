@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using OpenRiaServices.Server;
+﻿using OpenRiaServices.Server;
 using SimpleApplication.Web.Model;
 
 namespace SimpleApplication.Web
@@ -32,7 +27,7 @@ namespace SimpleApplication.Web
             return Task.Delay(delay);
         }
 
-        [Query(HasSideEffects=true)]
+        [Query(HasSideEffects = true)]
         public IQueryable<RangeItem> GetRange()
         {
             return _items.AsQueryable();
@@ -40,7 +35,7 @@ namespace SimpleApplication.Web
 
         public void UpdateRange(RangeItem range)
         {
-            
+
         }
 
         /// Query returing a queryable range in a task
@@ -115,7 +110,7 @@ namespace SimpleApplication.Web
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <returns></returns>
-        [Query(HasSideEffects=true, IsComposable=false)]
+        [Query(HasSideEffects = true, IsComposable = false)]
         public Task<RangeItem> GetRangeByIdTaskAsync(int id)
         {
             return Delay(1)
@@ -129,7 +124,7 @@ namespace SimpleApplication.Web
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <returns></returns>
-        [Query(HasSideEffects=true, IsComposable=false)]
+        [Query(HasSideEffects = true, IsComposable = false)]
         public Task<RangeItem> GetRangeByIdWithExceptionFirst(int id)
         {
             throw new DomainException("GetRangeByIdWithExceptionTask", 23);
@@ -140,13 +135,10 @@ namespace SimpleApplication.Web
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <returns></returns>
-        public Task<RangeItem> GetRangeByIdWithExceptionTask(int id)
+        public async Task<RangeItem> GetRangeByIdWithExceptionTask(int id)
         {
-            return Delay(1)
-                .ContinueWith<RangeItem>(_ =>
-                {
-                    throw new DomainException("GetRangeByIdWithExceptionTask", 24);
-                });
+            await Delay(1);
+            throw new DomainException("GetRangeByIdWithExceptionTask", 24);
         }
 
         /// <summary>
@@ -182,10 +174,10 @@ namespace SimpleApplication.Web
         /// <remarks>
         /// Tests invoke returning Task{reference type}
         /// </remarks>
-        public Task<string> GreetTaskAsync(string client)
+        public async Task<string> GreetTaskAsync(string client)
         {
-            return Delay(1)
-                .ContinueWith(t => string.Format("Hello {0}", client));
+            await Delay(1);
+            return string.Format("Hello {0}", client);
         }
 
         /// <summary>
